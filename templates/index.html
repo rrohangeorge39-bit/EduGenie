@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EduGenie – your AI study desk</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <aside class="rail">
+      <div class="brand">
+        <h1>EduGenie</h1>
+        <p>Your personal AI tutor for learning support.</p>
+      </div>
+      <nav class="tabs" role="tablist" aria-label="Study tools">
+        <button class="tab is-active" role="tab" id="tab-qa" aria-selected="true" aria-controls="panel-qa" data-panel="qa">Ask a question</button>
+        <button class="tab" role="tab" id="tab-explain" aria-selected="false" aria-controls="panel-explain" data-panel="explain">Explain a concept</button>
+        <button class="tab" role="tab" id="tab-summary" aria-selected="false" aria-controls="panel-summary" data-panel="summary">Summarize text</button>
+        <button class="tab" role="tab" id="tab-quiz" aria-selected="false" aria-controls="panel-quiz" data-panel="quiz">Take a quiz</button>
+        <button class="tab" role="tab" id="tab-path" aria-selected="false" aria-controls="panel-path" data-panel="path">Plan a learning path</button>
+      </nav>
+      <p class="status" id="status" aria-live="polite"></p>
+    </aside>
+
+    <main class="workspace">
+      <!-- Q&A -->
+      <section class="panel is-active" id="panel-qa" role="tabpanel" aria-labelledby="tab-qa">
+        <h2>Ask a question</h2>
+        <p class="hint">Any subject. You get a short, direct answer.</p>
+        <form id="qaForm">
+          <label for="question">Your question</label>
+          <div class="row">
+            <input type="text" id="question" placeholder="Why is the sky blue?" required autocomplete="off">
+            <button type="submit">Get answer</button>
+          </div>
+        </form>
+        <div id="qaResult" class="output" hidden></div>
+      </section>
+
+      <!-- Explanation -->
+      <section class="panel" id="panel-explain" role="tabpanel" aria-labelledby="tab-explain" hidden>
+        <h2>Explain a concept</h2>
+        <p class="hint">A simple explanation written for a school student. The first request can take a minute while the local model loads.</p>
+        <form id="explainForm">
+          <label for="topic">Concept</label>
+          <div class="row">
+            <input type="text" id="topic" placeholder="Photosynthesis" required autocomplete="off">
+            <button type="submit">Explain</button>
+          </div>
+        </form>
+        <div id="explainResult" class="output" hidden></div>
+      </section>
+
+      <!-- Summary -->
+      <section class="panel" id="panel-summary" role="tabpanel" aria-labelledby="tab-summary" hidden>
+        <h2>Summarize text</h2>
+        <p class="hint">Paste a long passage and get the key points in plain language.</p>
+        <form id="summaryForm">
+          <label for="summaryText">Passage</label>
+          <textarea id="summaryText" rows="8" placeholder="Paste long content to summarize" required></textarea>
+          <button type="submit">Summarize</button>
+        </form>
+        <div id="summaryResult" class="output" hidden></div>
+      </section>
+
+      <!-- Quiz -->
+      <section class="panel" id="panel-quiz" role="tabpanel" aria-labelledby="tab-quiz" hidden>
+        <h2>Take a quiz</h2>
+        <p class="hint">Enter a topic or paste a passage. You get three multiple-choice questions.</p>
+        <form id="quizForm">
+          <label for="quizText">Topic or passage</label>
+          <textarea id="quizText" rows="4" placeholder="Pythagoras theorem" required></textarea>
+          <button type="submit">Generate quiz</button>
+        </form>
+        <div id="quizResult" class="output" hidden></div>
+      </section>
+
+      <!-- Learning path -->
+      <section class="panel" id="panel-path" role="tabpanel" aria-labelledby="tab-path" hidden>
+        <h2>Plan a learning path</h2>
+        <p class="hint">Get a beginner-to-advanced plan with timelines and resources.</p>
+        <form id="pathForm">
+          <label for="pathTopic">What do you want to learn?</label>
+          <div class="row">
+            <input type="text" id="pathTopic" placeholder="SQL" required autocomplete="off">
+            <button type="submit">Get plan</button>
+          </div>
+        </form>
+        <div id="pathResult" class="output" hidden></div>
+      </section>
+    </main>
+  </div>
+  <script src="{{ url_for('static', path='app.js') }}"></script>
+</body>
+</html>
